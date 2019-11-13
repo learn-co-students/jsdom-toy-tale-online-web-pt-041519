@@ -1,6 +1,5 @@
 const addBtn = document.querySelector('#new-toy-btn')
 const toyForm = document.querySelector('.container')
-const likeBtn = document.querySelector('.like-btn')
 let addToy = false
 
 document.addEventListener("DOMContentLoaded", () => {
@@ -21,6 +20,9 @@ document.addEventListener("DOMContentLoaded", () => {
       let button = document.createElement("button")
       button.textContent = "Like <3"
       button.className = "like-btn"
+      button.addEventListener("click", (event) => {
+        likeToy(event, element)
+      })
       let newDiv = document.createElement("div")
       newDiv.className = "card"
       toyCollection.appendChild(newDiv)
@@ -28,8 +30,17 @@ document.addEventListener("DOMContentLoaded", () => {
       newDiv.appendChild(img)
       newDiv.appendChild(p)
       newDiv.appendChild(button)
+
       }
+      // const likeButtons = document.getElementsByClassName("like-btn")
+      // for (let i = 0; i < likeButtons.length; i++) {
+      //   let toyName = likeButtons[i].parentElement.querySelector("h2").innerText
+      //   likeButtons[i].addEventListener("click", likeToy(toyName))
+      // }
+
   })
+
+
 })
 
 
@@ -48,6 +59,7 @@ let newToyButton = document.querySelector(".add-toy-form")
 newToyButton.addEventListener("submit", createNewToy);
 
 function createNewToy() {
+  event.preventDefault()
 
 let formData = {
   name: document.querySelector(".add-toy-form").querySelector('input[name="name"]').value,
@@ -65,20 +77,10 @@ let configObject = {
   body: JSON.stringify(formData)
 };
 
-console.log(JSON.stringify(formData))
 
-
-fetch('http://localhost:3000/toys', {
-  method: "POST",
-  headers: {
-    "Content-Type": "application/json",
-    "Accept": "application/json"
-  },
-  body: JSON.stringify(formData) 
-  })
+fetch('http://localhost:3000/toys', configObject)
   .then(res => res.json())
    .then(function(object) {
-     console.log(object)
     let toyCollection = document.getElementById("toy-collection")
     let h2 = document.createElement("h2")
     h2.textContent = object.name
@@ -100,24 +102,31 @@ fetch('http://localhost:3000/toys', {
    })
 }
 
-// let configButton = {
-//     method: "PATCH",
-//     headers: {
-//       "Content-Type": "application/json",
-//       "Accept": "application/json"
-//     },
-//     body: JSON.stringify({
-//       "likes": 1
-//     })
-//   };
 
-// fetch('http://localhost:3000/toys/:id', configButton)
-//    .then(function(response) {
-//      return response.json();
-//    })
-//    .then(function(object) {
-//      console.log(object)
-//    })
+
+function likeToy(event, toy) {
+  event.preventDefault()
+let configButton = {
+    method: "PATCH",
+    headers: {
+      "Content-Type": "application/json",
+      "Accept": "application/json"
+    },
+    body: JSON.stringify({
+      "likes": parseInt(event.target.previousElementSibling.innerText) + 1
+    })
+  };
+
+
+
+fetch(`http://localhost:3000/toys/${toy.id}`, configButton)
+   .then(function(response) {
+     return response.json();
+   })
+   .then(function(object) {
+    event.target.previousElementSibling.innerText = object.likes
+   })
+  }
 
   
 
