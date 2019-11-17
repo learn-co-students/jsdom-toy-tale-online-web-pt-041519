@@ -46,7 +46,7 @@ function renderToys(toys) {
   }
 }
 
-function addToy(toy) {
+function postToy(toy) {
   // Post request to add toy
   fetch('http://localhost:3000/toys', {
     method: 'POST',
