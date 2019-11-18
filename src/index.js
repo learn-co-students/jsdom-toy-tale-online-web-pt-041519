@@ -27,10 +27,16 @@ document.addEventListener("DOMContentLoaded", (e) => {
 
 // fetch toys
 async function fetchToys(){
-  let res = await fetch("http://localhost:3000/toys");
-  let jsonObj = await res.json();
-  jsonObj.forEach(toy => buildToys(toy));
+  try {
+    let res = await fetch("http://localhost:3000/toys");
+    let jsonObj = await res.json();
+    jsonObj.forEach(toy => buildToys(toy));
+  } catch (error) {
+    console.log(error)
+    toyCollection.innerHTML = "<h2>RUN THE SERVER YOU DINGDONG</h2>"
+  };
 };
+
 
 // build toys
 function buildToys(toy){
