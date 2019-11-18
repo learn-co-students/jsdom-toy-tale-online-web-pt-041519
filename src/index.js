@@ -82,11 +82,17 @@ function buildToy (toy){
 
 
 async function getToys() {
-  const resp = await fetch('http://localhost:3000/toys')
-  const myData = await resp.json()
-  console.log(JSON.stringify(myData))
-  myData.forEach(toy => buildToy(toy))
-  
+  //here we are wrapping our function in a try so we can catch the error if anything goes wrong.
+  try {
+    const resp = await fetch('http://localhost:3000/toys')
+    const myData = await resp.json()
+    console.log(JSON.stringify(myData))
+    myData.forEach(toy => buildToy(toy))
+  } catch (error) {
+    toyCollection.innerHTML = "A json-server must be running to see the full site."
+    console.log(' run [ json-server --watch db.json ](without the square brackets) to start the server.')
+  }
+    
 }
 
 document.addEventListener("DOMContentLoaded", function() {
