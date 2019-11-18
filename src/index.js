@@ -14,7 +14,6 @@ addBtn.addEventListener('click', () => {
   }
 })
 
-
 // OR HERE!
   const toyCollection = document.getElementById("toy-collection")
   const nameInput = document.querySelector("body > div.container > form > input:nth-child(2)")
@@ -36,21 +35,15 @@ async function fetchToys(){
 // build toys
 function buildToys(toy){
   const toyCollection = document.getElementById("toy-collection");
-    // div class
     const div = document.createElement("div")
     div.className = "card";
-    // name in h2
     const name = document.createElement("h2")
     name.innerText = toy.name;
-    // image url and class
     const image = document.createElement("img")
-    // console.log(image)
     image.src = toy.image;
     image.className = "toy-avatar";
-    // p
     const p = document.createElement("p")
     p.innerHTML = `${toy.likes} Likes`
-    // button
     const button = document.createElement("button")
     button.className = "like-btn"
     button.innerText = "Like <3"
@@ -59,7 +52,6 @@ function buildToys(toy){
     toyCollection.appendChild(div);
 
     button.addEventListener("click", (e) => {
-    // increaseLikes(toy);
       toy.likes += 1;
       p.innerText = toy.likes + " Likes";
       fetch(`http://localhost:3000/toys/${toy.id}`, {
@@ -101,6 +93,3 @@ function submitNewToy(){
   })
   
 };
-// name = nameInput.value
-// image = imgURL.value
-
