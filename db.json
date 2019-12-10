@@ -4,13 +4,15 @@
       "id": 1,
       "name": "Woody",
       "image": "http://www.pngmart.com/files/3/Toy-Story-Woody-PNG-Photos.png",
-      "likes": 5
+      "likes": 70004,
+      "phrase": "Hey dude, wassup?!"
     },
     {
       "id": 2,
       "name": "Buzz Lightyear",
       "image": "http://www.pngmart.com/files/6/Buzz-Lightyear-PNG-Transparent-Picture.png",
-      "likes": 8
+      "likes": 700018,
+      "phrase": "Hey dude, wassup?!"
     },
     {
       "id": 3,
@@ -22,7 +24,7 @@
       "id": 4,
       "name": "Slinky Dog",
       "image": "https://www.freeiconspng.com/uploads/slinky-png-transparent-1.png",
-      "likes": 4
+      "likes": 42
     },
     {
       "id": 5,
@@ -47,6 +49,20 @@
       "name": "Little Green Men",
       "image": "http://www.pngmart.com/files/3/Toy-Story-Alien-PNG-File.png",
       "likes": -2
+    },
+    {
+      "name": "Joe Kline",
+      "image": "https://thesportsseerdotcom.files.wordpress.com/2015/03/kleine2.jpg?resize=249%2C332",
+      "likes": 7000,
+      "id": 14,
+      "phrase": "Hey dude, wassup?!"
+    },
+    {
+      "name": "Gil",
+      "image": "https://izismile.com/2009/07/29/the_best_nerds_of_all_ever_46_pics-2.html",
+      "likes": 7000,
+      "phrase": "Hey dude, wassup?!",
+      "id": 15
     }
   ]
 }
